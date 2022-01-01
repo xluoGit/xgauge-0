@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>xhq.gauge</groupId>
+    <artifactId>xhq-gauge-java</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <java.source.version>11</java.source.version>
+        <java.target.version>11</java.target.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <gauge.version>0.7.15</gauge.version>
+        <assertj.version>3.17.2</assertj.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.thoughtworks.gauge</groupId>
+            <artifactId>gauge-java</artifactId>
+            <version>${gauge.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.source.version}</source>
+                    <target>${java.target.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.thoughtworks.gauge.maven</groupId>
+                <artifactId>gauge-maven-plugin</artifactId>
+                <version>1.4.3</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <configuration>
+                            <specsDir>specs</specsDir>
+                        </configuration>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
